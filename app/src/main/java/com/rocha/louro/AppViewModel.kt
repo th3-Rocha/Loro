@@ -10,6 +10,8 @@ import com.rocha.louro.content.LevelEntry
 import com.rocha.louro.data.Progress
 import com.rocha.louro.data.ProgressStore
 import com.rocha.louro.session.LevelSession
+import com.rocha.louro.session.PlacementQuestion
+import com.rocha.louro.session.PlacementTest
 import com.rocha.louro.session.SessionItem
 import com.rocha.louro.session.Srs
 import kotlinx.coroutines.Dispatchers
@@ -37,12 +39,17 @@ data class LevelUi(
 
 data class Summary(val title: String, val points: Int, val streak: Int, val streakGrew: Boolean)
 
+data class PlacementResult(val knownWords: Int, val skippedLevels: Int)
+
 sealed interface Screen {
     data object Loading : Screen
     data object Languages : Screen
     data object Home : Screen
     data class Playing(val ui: LevelUi) : Screen
     data class Done(val summary: Summary) : Screen
+    data object PlacementIntro : Screen
+    data class Placement(val question: PlacementQuestion, val number: Int) : Screen
+    data class PlacementDone(val result: PlacementResult) : Screen
 }
 
 data class AppState(
@@ -67,6 +74,8 @@ class AppViewModel(app: Application) : AndroidViewModel(app) {
     private var session: LevelSession? = null
     private var sessionItems: List<SessionItem> = emptyList()
     private var sessionLevel: LevelEntry? = null
+    private var placement: PlacementTest? = null
+    private var placementStart = 0
 
     init {
         viewModelScope.launch {
@@ -102,9 +111,50 @@ class AppViewModel(app: Application) : AndroidViewModel(app) {
             val levels = loadLevels(language.id)
             val progress = _state.value.progress.copy(currentLanguage = language.id)
             save(progress)
-            _state.update {
-                it.copy(screen = Screen.Home, language = language, levels = levels, progress = progress)
-            }
+            val fresh = progress.language(language.id).let { !it.placementOffered && it.completed.isEmpty() }
+            val screen = if (fresh && levels.size > 1) Screen.PlacementIntro else Screen.Home
+            _state.update { it.copy(screen = screen, language = language, levels = levels, progress = progress) }
+        }
+    }
+
+    fun openPlacement() = _state.update { it.copy(screen = Screen.PlacementIntro) }
+
+    fun skipPlacement() = finishPlacement(emptyList(), showResult = false)
+
+    fun startPlacement() {
+        val state = _state.value
+        val language = state.language ?: return
+        val completed = state.progress.language(language.id).completed
+        placementStart = state.levels.indexOfFirst { it.id !in completed }.takeIf { it >= 0 } ?: state.levels.size
+        placement = PlacementTest(state.levels, placementStart)
+        showPlacement()
+    }
+
+    fun answerPlacement(choice: Int?) {
+        placement?.answer(choice)
+        showPlacement()
+    }
+
+    private fun showPlacement() {
+        val test = placement ?: return
+        val question = test.current
+        if (question == null) {
+            val skipped = _state.value.levels.drop(placementStart).take(test.passedLevels)
+            finishPlacement(skipped, showResult = true)
+        } else {
+            _state.update { it.copy(screen = Screen.Placement(question, test.answered + 1)) }
+        }
+    }
+
+    private fun finishPlacement(skipped: List<LevelEntry>, showResult: Boolean) {
+        val state = _state.value
+        val language = state.language ?: return
+        val progress = PlacementTest.apply(state.progress, language.id, skipped, today())
+        save(progress)
+        placement = null
+        val result = PlacementResult(progress.language(language.id).knownWords, skipped.size)
+        _state.update {
+            it.copy(screen = if (showResult) Screen.PlacementDone(result) else Screen.Home, progress = progress)
         }
     }
 
@@ -182,6 +232,7 @@ class AppViewModel(app: Application) : AndroidViewModel(app) {
 
     fun backHome() {
         session = null
+        placement = null
         speaker.stop()
         _state.update { it.copy(screen = Screen.Home) }
     }

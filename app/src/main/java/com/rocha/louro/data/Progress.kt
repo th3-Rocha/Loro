@@ -18,7 +18,11 @@ data class LanguageProgress(
     val completed: Set<String> = emptySet(),
     val points: Int = 0,
     val srs: Map<String, SrsItem> = emptyMap(),
-)
+    val placementOffered: Boolean = false,
+) {
+    /** Passive vocabulary: words and concepts answered correctly at least once. */
+    val knownWords: Int get() = srs.count { it.value.reps > 0 }
+}
 
 @Serializable
 data class Progress(

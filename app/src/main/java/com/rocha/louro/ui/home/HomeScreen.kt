@@ -40,7 +40,12 @@ import kotlin.math.sin
 private enum class BubbleState { DONE, CURRENT, LOCKED }
 
 @Composable
-fun HomeScreen(state: AppState, onLevel: (LevelEntry) -> Unit, onLanguages: () -> Unit) {
+fun HomeScreen(
+    state: AppState,
+    onLevel: (LevelEntry) -> Unit,
+    onLanguages: () -> Unit,
+    onPlacement: () -> Unit,
+) {
     val language = state.language ?: return
     val progress = state.progress.language(language.id)
     val currentIndex = state.levels.indexOfFirst { it.id !in progress.completed }
@@ -56,7 +61,9 @@ fun HomeScreen(state: AppState, onLevel: (LevelEntry) -> Unit, onLanguages: () -
             name = language.info.name,
             streak = state.progress.streakOn(state.today),
             points = progress.points,
+            words = progress.knownWords,
             onLanguages = onLanguages,
+            onPlacement = onPlacement,
         )
         LazyColumn(
             state = listState,
@@ -71,7 +78,7 @@ fun HomeScreen(state: AppState, onLevel: (LevelEntry) -> Unit, onLanguages: () -
                     else -> BubbleState.LOCKED
                 }
                 // The path snakes left and right as it goes down.
-                val sway = (sin(index * 0.85) * 82).dp
+                val sway = (sin(index * 1.1) * 82).dp
                 LevelBubble(
                     level = level,
                     number = index + 1,
@@ -95,7 +102,15 @@ fun HomeScreen(state: AppState, onLevel: (LevelEntry) -> Unit, onLanguages: () -
 }
 
 @Composable
-private fun TopBar(flag: String, name: String, streak: Int, points: Int, onLanguages: () -> Unit) {
+private fun TopBar(
+    flag: String,
+    name: String,
+    streak: Int,
+    points: Int,
+    words: Int,
+    onLanguages: () -> Unit,
+    onPlacement: () -> Unit,
+) {
     Row(
         Modifier
             .fillMaxWidth()
@@ -115,8 +130,13 @@ private fun TopBar(flag: String, name: String, streak: Int, points: Int, onLangu
             Text(name, color = LouroColors.Text, fontWeight = FontWeight.Bold, fontSize = 17.sp)
         }
         Spacer(Modifier.weight(1f))
+        // Known vocabulary doubles as the way back into the placement test.
+        Row(Modifier.clip(RoundedCornerShape(12.dp)).clickable(onClick = onPlacement).padding(6.dp)) {
+            Stat("📚", words.toString(), LouroColors.Neon)
+        }
+        Spacer(Modifier.width(10.dp))
         Stat("🔥", streak.toString(), if (streak > 0) LouroColors.Orange else LouroColors.Lilac)
-        Spacer(Modifier.width(18.dp))
+        Spacer(Modifier.width(16.dp))
         Stat("⭐", points.toString(), LouroColors.Orange)
     }
 }
@@ -140,27 +160,44 @@ private fun LevelBubble(
 ) {
     val face = when (state) {
         BubbleState.DONE -> LouroColors.Neon
-        BubbleState.CURRENT -> LouroColors.Orange
+        BubbleState.CURRENT -> LouroColors.Neon
         BubbleState.LOCKED -> LouroColors.EggplantBright
     }
     val edge = when (state) {
         BubbleState.DONE -> LouroColors.NeonEdge
-        BubbleState.CURRENT -> LouroColors.OrangeEdge
+        BubbleState.CURRENT -> LouroColors.NeonEdge
         BubbleState.LOCKED -> LouroColors.EggplantEdge
     }
+    val enabled = state != BubbleState.LOCKED
     Column(
-        modifier.padding(vertical = 10.dp).width(150.dp),
+        modifier
+            .padding(vertical = 10.dp)
+            .width(150.dp)
+            .clip(RoundedCornerShape(20.dp))
+            .clickable(enabled = enabled, onClick = onClick),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center,
     ) {
+        if (state == BubbleState.CURRENT) {
+            Text(
+                "COMEÇAR",
+                color = LouroColors.Eggplant,
+                fontWeight = FontWeight.ExtraBold,
+                fontSize = 12.sp,
+                modifier = Modifier
+                    .clip(RoundedCornerShape(10.dp))
+                    .background(LouroColors.Orange)
+                    .padding(horizontal = 10.dp, vertical = 4.dp),
+            )
+            Spacer(Modifier.height(8.dp))
+        }
         Box(Modifier.size(78.dp, 85.dp)) {
             Box(Modifier.size(78.dp).offset(y = 7.dp).clip(CircleShape).background(edge))
             Box(
                 Modifier
                     .size(78.dp)
                     .clip(CircleShape)
-                    .background(face)
-                    .clickable(enabled = state != BubbleState.LOCKED, onClick = onClick),
+                    .background(face),
                 contentAlignment = Alignment.Center,
             ) {
                 Text(if (state == BubbleState.LOCKED) "🔒" else level.level.type.icon, fontSize = 30.sp)

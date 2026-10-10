@@ -1,0 +1,128 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Louro level.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "type", "title", "glossary", "exercises"],
+  "properties": {
+    "schema": { "const": 1 },
+    "type": { "enum": ["vocabulary", "listen_speak", "writing", "reading", "grammar"] },
+    "title": { "type": "string", "description": "Nome curto mostrado embaixo da bolinha, em português." },
+    "theme": { "type": "string" },
+    "glossary": {
+      "type": "object",
+      "description": "Significado em português de cada item que o nível apresenta em \"new\". Alimenta as revisões e o teste de nivelamento.",
+      "additionalProperties": { "type": "string" }
+    },
+    "exercises": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/exercise" } }
+  },
+  "$defs": {
+    "tags": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Itens em minúsculas, na língua-alvo. Uma palavra, expressão ou conceito."
+    },
+    "base": {
+      "type": "object",
+      "required": ["kind", "id"],
+      "properties": {
+        "id": { "type": "string", "description": "Único dentro do nível." },
+        "new": { "$ref": "#/$defs/tags", "description": "O que este exercício apresenta pela primeira vez. Cada item precisa estar no glossary." },
+        "review": { "$ref": "#/$defs/tags", "description": "O que este exercício revisa. Só itens já apresentados neste nível ou em níveis anteriores." }
+      }
+    },
+    "exercise": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/base",
+          "description": "Apresenta uma palavra. Não é avaliado.",
+          "required": ["term", "translation"],
+          "properties": {
+            "kind": { "const": "card" },
+            "term": { "type": "string" },
+            "translation": { "type": "string" },
+            "example": { "type": "string" },
+            "exampleTranslation": { "type": "string" },
+            "emoji": { "type": "string" },
+            "image": { "type": "string", "description": "Arquivo na pasta do nível." },
+            "audio": { "type": "string", "description": "Arquivo na pasta do nível. Sem ele, o app usa a voz do aparelho." }
+          }
+        },
+        {
+          "$ref": "#/$defs/base",
+          "description": "Explicação curta de gramática. Não é avaliado.",
+          "required": ["title", "text"],
+          "properties": {
+            "kind": { "const": "note" },
+            "title": { "type": "string" },
+            "text": { "type": "string" },
+            "examples": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": ["text", "translation"],
+                "properties": { "text": { "type": "string" }, "translation": { "type": "string" } }
+              }
+            }
+          }
+        },
+        {
+          "$ref": "#/$defs/base",
+          "description": "Múltipla escolha. O app embaralha as opções.",
+          "required": ["prompt", "options", "answer"],
+          "properties": {
+            "kind": { "const": "choice" },
+            "prompt": { "type": "string" },
+            "speak": { "type": "string", "description": "Texto na língua-alvo mostrado e lido em voz alta." },
+            "options": { "type": "array", "minItems": 2, "items": { "type": "string" } },
+            "answer": { "type": "integer", "minimum": 0, "description": "Índice da opção certa." }
+          }
+        },
+        {
+          "$ref": "#/$defs/base",
+          "description": "Frase em português para escrever na língua-alvo. Acento e grafia são cobrados; maiúsculas e pontuação não.",
+          "required": ["prompt", "answers"],
+          "properties": {
+            "kind": { "const": "write" },
+            "prompt": { "type": "string" },
+            "answers": { "type": "array", "minItems": 1, "items": { "type": "string" }, "description": "Todas as respostas aceitas; a primeira é a mostrada na correção." }
+          }
+        },
+        {
+          "$ref": "#/$defs/base",
+          "description": "Frase para ouvir e repetir.",
+          "required": ["text"],
+          "properties": {
+            "kind": { "const": "speak" },
+            "text": { "type": "string" },
+            "translation": { "type": "string" },
+            "audio": { "type": "string" }
+          }
+        },
+        {
+          "$ref": "#/$defs/base",
+          "description": "Texto curto com palavras tocáveis. Não é avaliado.",
+          "required": ["tokens"],
+          "properties": {
+            "kind": { "const": "read" },
+            "title": { "type": "string" },
+            "translation": { "type": "string" },
+            "tokens": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "object",
+                "required": ["t"],
+                "properties": {
+                  "t": { "type": "string", "description": "A palavra como aparece, com a pontuação colada." },
+                  "g": { "type": "string", "description": "Significado em português. Sem ele a palavra não é tocável." },
+                  "w": { "type": "string", "description": "Item para a fila de revisão, se for diferente da palavra em minúsculas." }
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}
