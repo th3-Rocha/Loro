@@ -1,0 +1,35 @@
+{
+  "schema": 1,
+  "type": "grammar",
+  "title": "Verbo to be",
+  "theme": "Ser e estar no presente: I, you, he, she",
+  "glossary": {
+    "i": "eu",
+    "you": "você",
+    "he": "ele",
+    "she": "ela",
+    "am": "sou / estou",
+    "are": "é / está (você)",
+    "is": "é / está (ele, ela)"
+  },
+  "exercises": [
+    {
+      "kind": "note", "id": "n-to-be", "new": ["i", "you", "he", "she", "am", "are", "is"],
+      "title": "To be: ser e estar",
+      "text": "Em inglês, um único verbo, to be, faz o papel de “ser” e de “estar”. No presente, cada pessoa tem a sua forma. Na fala do dia a dia elas costumam aparecer contraídas: I'm, you're, he's, she's.",
+      "examples": [
+        { "text": "I am Mark.", "translation": "Eu sou o Mark." },
+        { "text": "You are my friend.", "translation": "Você é meu amigo." },
+        { "text": "He is from London.", "translation": "Ele é de Londres." },
+        { "text": "She is from Brazil.", "translation": "Ela é do Brasil." }
+      ]
+    },
+    { "kind": "choice", "id": "q-i", "review": ["i", "am"], "prompt": "Complete: I ___ Mark.", "options": ["am", "are", "is"], "answer": 0 },
+    { "kind": "choice", "id": "q-you", "review": ["you", "are"], "prompt": "Complete: You ___ my friend.", "options": ["am", "are", "is"], "answer": 1 },
+    { "kind": "choice", "id": "q-she", "review": ["she", "is"], "prompt": "Complete: She ___ from Brazil.", "options": ["am", "are", "is"], "answer": 2 },
+    { "kind": "choice", "id": "q-he", "review": ["he"], "prompt": "Qual destas quer dizer “ele”?", "options": ["he", "she", "you"], "answer": 0 },
+    { "kind": "write", "id": "w-i", "review": ["i", "am"], "prompt": "Eu sou a Anna.", "answers": ["I am Anna", "I'm Anna"] },
+    { "kind": "write", "id": "w-he", "review": ["he", "is"], "prompt": "Ele é de Londres.", "answers": ["He is from London", "He's from London"] },
+    { "kind": "write", "id": "w-you", "review": ["you", "are", "hello"], "prompt": "Olá, você é o Mark?", "answers": ["Hello, are you Mark"] }
+  ]
+}

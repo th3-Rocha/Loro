@@ -1,0 +1,21 @@
+{
+  "schema": 1,
+  "type": "writing",
+  "title": "Apresentações",
+  "theme": "Dizer o nome e perguntar o do outro",
+  "glossary": {
+    "mi chiamo": "eu me chamo",
+    "piacere": "prazer",
+    "come ti chiami": "como você se chama?"
+  },
+  "exercises": [
+    { "kind": "card", "id": "c-mi-chiamo", "new": ["mi chiamo"], "term": "mi chiamo", "translation": "eu me chamo", "emoji": "🙋", "example": "Mi chiamo Luca.", "exampleTranslation": "Eu me chamo Luca." },
+    { "kind": "card", "id": "c-piacere", "new": ["piacere"], "term": "piacere", "translation": "prazer", "emoji": "🤝", "example": "Piacere, Giulia!", "exampleTranslation": "Prazer, Giulia!" },
+    { "kind": "card", "id": "c-come-ti-chiami", "new": ["come ti chiami"], "term": "come ti chiami?", "translation": "como você se chama?", "emoji": "❓" },
+    { "kind": "write", "id": "w-mi-chiamo", "review": ["mi chiamo", "ciao"], "prompt": "Oi, eu me chamo Luca.", "answers": ["Ciao, mi chiamo Luca"] },
+    { "kind": "write", "id": "w-piacere", "review": ["piacere"], "prompt": "Prazer!", "answers": ["Piacere"] },
+    { "kind": "write", "id": "w-come-ti-chiami", "review": ["come ti chiami"], "prompt": "Como você se chama?", "answers": ["Come ti chiami"] },
+    { "kind": "write", "id": "w-sono", "review": ["buongiorno", "sono"], "prompt": "Bom dia, eu sou a Giulia.", "answers": ["Buongiorno, io sono Giulia", "Buongiorno, sono Giulia"] },
+    { "kind": "write", "id": "w-grazie", "review": ["grazie", "piacere"], "prompt": "Obrigado, prazer!", "answers": ["Grazie, piacere"] }
+  ]
+}

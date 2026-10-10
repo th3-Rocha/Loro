@@ -1,0 +1,34 @@
+{
+  "schema": 1,
+  "type": "reading",
+  "title": "At the café",
+  "theme": "Um café da manhã em Londres",
+  "glossary": {
+    "café": "cafeteria",
+    "coffee": "café (bebida)",
+    "sandwich": "sanduíche",
+    "order": "pedir",
+    "good": "bom"
+  },
+  "exercises": [
+    {
+      "kind": "read", "id": "r-at-the-cafe", "new": ["café", "coffee", "sandwich", "order", "good"], "review": ["good morning", "my name is", "am", "is", "thank you"],
+      "title": "At the café",
+      "tokens": [
+        { "t": "Good", "g": "bom" }, { "t": "morning!", "g": "manhã" },
+        { "t": "My", "g": "meu / minha" }, { "t": "name", "g": "nome" }, { "t": "is", "g": "é / está" }, { "t": "Anna." },
+        { "t": "I", "g": "eu", "w": "i" }, { "t": "am", "g": "sou / estou" }, { "t": "from", "g": "de (origem)" }, { "t": "London." },
+        { "t": "At", "g": "em / no" }, { "t": "the", "g": "o / a" }, { "t": "café", "g": "cafeteria" },
+        { "t": "I", "g": "eu", "w": "i" }, { "t": "order", "g": "peço" }, { "t": "a", "g": "um / uma" }, { "t": "coffee", "g": "café (bebida)" },
+        { "t": "and", "g": "e" }, { "t": "a", "g": "um / uma" }, { "t": "sandwich.", "g": "sanduíche" },
+        { "t": "The", "g": "o / a" }, { "t": "coffee", "g": "café (bebida)" }, { "t": "is", "g": "é / está" }, { "t": "good.", "g": "bom" },
+        { "t": "Thank", "g": "obrigado", "w": "thank you" }, { "t": "you", "g": "você" }, { "t": "and", "g": "e" }, { "t": "goodbye!", "g": "tchau" }
+      ],
+      "translation": "Bom dia! Meu nome é Anna. Eu sou de Londres. Na cafeteria eu peço um café e um sanduíche. O café é bom. Obrigada e tchau!"
+    },
+    { "kind": "choice", "id": "q-london", "review": ["am"], "prompt": "De onde é a Anna?", "options": ["De Londres", "De Nova York", "De Roma"], "answer": 0 },
+    { "kind": "choice", "id": "q-order", "review": ["order", "coffee", "sandwich"], "prompt": "O que a Anna pede na cafeteria?", "options": ["Um chá e um bolo", "Um café e um sanduíche", "Uma pizza"], "answer": 1 },
+    { "kind": "choice", "id": "q-good", "review": ["good", "coffee"], "prompt": "O que significa?", "speak": "The coffee is good.", "options": ["O café é caro.", "O café está frio.", "O café é bom."], "answer": 2 },
+    { "kind": "write", "id": "w-coffee", "review": ["coffee", "please"], "prompt": "Um café, por favor.", "answers": ["A coffee, please"] }
+  ]
+}

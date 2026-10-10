@@ -1,0 +1,34 @@
+{
+  "schema": 1,
+  "type": "reading",
+  "title": "Al bar",
+  "theme": "Um café da manhã em Roma",
+  "glossary": {
+    "bar": "bar / cafeteria",
+    "caffè": "café",
+    "cornetto": "croissant",
+    "prendo": "eu pego / eu peço",
+    "buono": "bom"
+  },
+  "exercises": [
+    {
+      "kind": "read", "id": "r-al-bar", "new": ["bar", "caffè", "cornetto", "prendo", "buono"], "review": ["buongiorno", "mi chiamo", "sono", "è", "grazie", "ciao"],
+      "title": "Al bar",
+      "tokens": [
+        { "t": "Buongiorno!", "g": "bom dia" },
+        { "t": "Mi", "g": "me" }, { "t": "chiamo", "g": "chamo" }, { "t": "Anna." },
+        { "t": "Sono", "g": "sou" }, { "t": "di", "g": "de" }, { "t": "Roma." },
+        { "t": "Al", "g": "no / ao" }, { "t": "bar", "g": "bar / cafeteria" },
+        { "t": "prendo", "g": "eu pego / eu peço" }, { "t": "un", "g": "um" }, { "t": "caffè", "g": "café" },
+        { "t": "e", "g": "e" }, { "t": "un", "g": "um" }, { "t": "cornetto.", "g": "croissant" },
+        { "t": "Il", "g": "o" }, { "t": "caffè", "g": "café" }, { "t": "è", "g": "é / está" }, { "t": "buono.", "g": "bom" },
+        { "t": "Grazie", "g": "obrigado" }, { "t": "e", "g": "e" }, { "t": "ciao!", "g": "oi / tchau" }
+      ],
+      "translation": "Bom dia! Eu me chamo Anna. Sou de Roma. No bar eu peço um café e um croissant. O café é bom. Obrigada e tchau!"
+    },
+    { "kind": "choice", "id": "q-roma", "review": ["sono"], "prompt": "De onde é a Anna?", "options": ["De Roma", "De Milão", "De Nápoles"], "answer": 0 },
+    { "kind": "choice", "id": "q-prendo", "review": ["prendo", "caffè", "cornetto"], "prompt": "O que a Anna pede no bar?", "options": ["Um chá e um bolo", "Um café e um croissant", "Uma pizza"], "answer": 1 },
+    { "kind": "choice", "id": "q-buono", "review": ["buono", "caffè"], "prompt": "O que significa?", "speak": "Il caffè è buono.", "options": ["O café é caro.", "O café está frio.", "O café é bom."], "answer": 2 },
+    { "kind": "write", "id": "w-caffe", "review": ["caffè", "per favore"], "prompt": "Um café, por favor.", "answers": ["Un caffè, per favore"] }
+  ]
+}

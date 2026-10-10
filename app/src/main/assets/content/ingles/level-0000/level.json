@@ -1,0 +1,25 @@
+{
+  "schema": 1,
+  "type": "vocabulary",
+  "title": "Saudações",
+  "theme": "Cumprimentar e agradecer",
+  "glossary": {
+    "hello": "olá",
+    "good morning": "bom dia",
+    "good evening": "boa noite (ao chegar)",
+    "thank you": "obrigado",
+    "please": "por favor"
+  },
+  "exercises": [
+    { "kind": "card", "id": "c-hello", "new": ["hello"], "term": "hello", "translation": "olá", "emoji": "👋", "example": "Hello, Mark!", "exampleTranslation": "Olá, Mark!" },
+    { "kind": "card", "id": "c-good-morning", "new": ["good morning"], "term": "good morning", "translation": "bom dia", "emoji": "☀️", "example": "Good morning, everyone!", "exampleTranslation": "Bom dia, pessoal!" },
+    { "kind": "choice", "id": "q-hello", "review": ["hello"], "prompt": "O que significa?", "speak": "hello", "options": ["olá", "bom dia", "obrigado"], "answer": 0 },
+    { "kind": "card", "id": "c-good-evening", "new": ["good evening"], "term": "good evening", "translation": "boa noite (ao chegar)", "emoji": "🌆", "example": "Good evening, sir.", "exampleTranslation": "Boa noite, senhor." },
+    { "kind": "choice", "id": "q-good-morning", "review": ["good morning", "good evening", "hello"], "prompt": "Como se diz “bom dia”?", "options": ["Good morning", "Good evening", "Hello"], "answer": 0 },
+    { "kind": "card", "id": "c-thank-you", "new": ["thank you"], "term": "thank you", "translation": "obrigado", "emoji": "🙏", "example": "Thank you, Anna!", "exampleTranslation": "Obrigado, Anna!" },
+    { "kind": "card", "id": "c-please", "new": ["please"], "term": "please", "translation": "por favor", "emoji": "🤲", "example": "A coffee, please.", "exampleTranslation": "Um café, por favor." },
+    { "kind": "choice", "id": "q-thank-you", "review": ["thank you"], "prompt": "O que significa?", "speak": "thank you", "options": ["por favor", "obrigado", "boa noite"], "answer": 1 },
+    { "kind": "choice", "id": "q-please", "review": ["please", "thank you"], "prompt": "Como se diz “por favor”?", "options": ["Thank you", "Please", "Good morning"], "answer": 1 },
+    { "kind": "choice", "id": "q-good-evening", "review": ["good evening"], "prompt": "O que significa?", "speak": "good evening", "options": ["bom dia", "olá", "boa noite (ao chegar)"], "answer": 2 }
+  ]
+}

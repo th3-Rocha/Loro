@@ -1,0 +1,21 @@
+{
+  "schema": 1,
+  "type": "listen_speak",
+  "title": "Como vai?",
+  "theme": "Perguntar e responder como a pessoa está",
+  "glossary": {
+    "come stai": "como você está?",
+    "sto bene": "estou bem",
+    "e tu": "e você?"
+  },
+  "exercises": [
+    { "kind": "card", "id": "c-come-stai", "new": ["come stai"], "term": "come stai?", "translation": "como você está?", "emoji": "🙂" },
+    { "kind": "speak", "id": "s-come-stai", "review": ["come stai", "ciao"], "text": "Ciao, come stai?", "translation": "Oi, como você está?" },
+    { "kind": "card", "id": "c-sto-bene", "new": ["sto bene"], "term": "sto bene", "translation": "estou bem", "emoji": "👍" },
+    { "kind": "speak", "id": "s-sto-bene", "review": ["sto bene", "grazie"], "text": "Sto bene, grazie.", "translation": "Estou bem, obrigado." },
+    { "kind": "card", "id": "c-e-tu", "new": ["e tu"], "term": "e tu?", "translation": "e você?", "emoji": "👉" },
+    { "kind": "speak", "id": "s-e-tu", "review": ["e tu", "sto bene"], "text": "Sto bene. E tu?", "translation": "Estou bem. E você?" },
+    { "kind": "choice", "id": "q-come-stai", "review": ["come stai"], "prompt": "O que significa?", "speak": "Come stai?", "options": ["Como você se chama?", "Como você está?", "De onde você é?"], "answer": 1 },
+    { "kind": "speak", "id": "s-piacere", "review": ["buonasera", "piacere"], "text": "Buonasera, piacere!", "translation": "Boa noite, prazer!" }
+  ]
+}

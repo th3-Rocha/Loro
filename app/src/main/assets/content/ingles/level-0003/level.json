@@ -1,0 +1,21 @@
+{
+  "schema": 1,
+  "type": "listen_speak",
+  "title": "Como vai?",
+  "theme": "Perguntar e responder como a pessoa está",
+  "glossary": {
+    "how are you": "como você está?",
+    "i'm fine": "estou bem",
+    "and you": "e você?"
+  },
+  "exercises": [
+    { "kind": "card", "id": "c-how-are-you", "new": ["how are you"], "term": "how are you?", "translation": "como você está?", "emoji": "🙂" },
+    { "kind": "speak", "id": "s-how-are-you", "review": ["how are you", "hello"], "text": "Hello, how are you?", "translation": "Olá, como você está?" },
+    { "kind": "card", "id": "c-im-fine", "new": ["i'm fine"], "term": "I'm fine", "translation": "estou bem", "emoji": "👍" },
+    { "kind": "speak", "id": "s-im-fine", "review": ["i'm fine", "thank you"], "text": "I'm fine, thank you.", "translation": "Estou bem, obrigado." },
+    { "kind": "card", "id": "c-and-you", "new": ["and you"], "term": "and you?", "translation": "e você?", "emoji": "👉" },
+    { "kind": "speak", "id": "s-and-you", "review": ["and you", "i'm fine"], "text": "I'm fine. And you?", "translation": "Estou bem. E você?" },
+    { "kind": "choice", "id": "q-how-are-you", "review": ["how are you"], "prompt": "O que significa?", "speak": "How are you?", "options": ["Qual é o seu nome?", "Como você está?", "De onde você é?"], "answer": 1 },
+    { "kind": "speak", "id": "s-nice-to-meet-you", "review": ["good evening", "nice to meet you"], "text": "Good evening, nice to meet you!", "translation": "Boa noite, prazer em conhecer você!" }
+  ]
+}

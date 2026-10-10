@@ -1,0 +1,25 @@
+{
+  "schema": 1,
+  "type": "vocabulary",
+  "title": "Saudações",
+  "theme": "Cumprimentar e agradecer",
+  "glossary": {
+    "ciao": "oi / tchau",
+    "buongiorno": "bom dia",
+    "buonasera": "boa noite (ao chegar)",
+    "grazie": "obrigado",
+    "per favore": "por favor"
+  },
+  "exercises": [
+    { "kind": "card", "id": "c-ciao", "new": ["ciao"], "term": "ciao", "translation": "oi / tchau", "emoji": "👋", "example": "Ciao, Marco!", "exampleTranslation": "Oi, Marco!" },
+    { "kind": "card", "id": "c-buongiorno", "new": ["buongiorno"], "term": "buongiorno", "translation": "bom dia", "emoji": "☀️", "example": "Buongiorno, signora!", "exampleTranslation": "Bom dia, senhora!" },
+    { "kind": "choice", "id": "q-ciao", "review": ["ciao"], "prompt": "O que significa?", "speak": "ciao", "options": ["oi / tchau", "bom dia", "obrigado"], "answer": 0 },
+    { "kind": "card", "id": "c-buonasera", "new": ["buonasera"], "term": "buonasera", "translation": "boa noite (ao chegar)", "emoji": "🌆", "example": "Buonasera a tutti!", "exampleTranslation": "Boa noite a todos!" },
+    { "kind": "choice", "id": "q-buongiorno", "review": ["buongiorno", "buonasera", "ciao"], "prompt": "Como se diz “bom dia”?", "options": ["Buongiorno", "Buonasera", "Ciao"], "answer": 0 },
+    { "kind": "card", "id": "c-grazie", "new": ["grazie"], "term": "grazie", "translation": "obrigado", "emoji": "🙏", "example": "Grazie, Anna!", "exampleTranslation": "Obrigado, Anna!" },
+    { "kind": "card", "id": "c-per-favore", "new": ["per favore"], "term": "per favore", "translation": "por favor", "emoji": "🤲", "example": "Un caffè, per favore.", "exampleTranslation": "Um café, por favor." },
+    { "kind": "choice", "id": "q-grazie", "review": ["grazie"], "prompt": "O que significa?", "speak": "grazie", "options": ["por favor", "obrigado", "boa noite"], "answer": 1 },
+    { "kind": "choice", "id": "q-per-favore", "review": ["per favore", "grazie"], "prompt": "Como se diz “por favor”?", "options": ["Grazie", "Per favore", "Buongiorno"], "answer": 1 },
+    { "kind": "choice", "id": "q-buonasera", "review": ["buonasera"], "prompt": "O que significa?", "speak": "buonasera", "options": ["bom dia", "oi / tchau", "boa noite (ao chegar)"], "answer": 2 }
+  ]
+}

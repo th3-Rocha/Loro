@@ -1,0 +1,35 @@
+{
+  "schema": 1,
+  "type": "grammar",
+  "title": "Verbo essere",
+  "theme": "Ser e estar no presente: io, tu, lui, lei",
+  "glossary": {
+    "io": "eu",
+    "tu": "você",
+    "lui": "ele",
+    "lei": "ela",
+    "sono": "sou / estou",
+    "sei": "é / está (você)",
+    "è": "é / está (ele, ela)"
+  },
+  "exercises": [
+    {
+      "kind": "note", "id": "n-essere", "new": ["io", "tu", "lui", "lei", "sono", "sei", "è"],
+      "title": "Essere: ser e estar",
+      "text": "Em italiano, um único verbo, essere, faz o papel de “ser” e de “estar”. No presente, cada pessoa tem a sua forma. Repare no acento de “è”: sem ele, “e” quer dizer apenas “e”.",
+      "examples": [
+        { "text": "Io sono Marco.", "translation": "Eu sou o Marco." },
+        { "text": "Tu sei italiano.", "translation": "Você é italiano." },
+        { "text": "Lui è di Roma.", "translation": "Ele é de Roma." },
+        { "text": "Lei è di Milano.", "translation": "Ela é de Milão." }
+      ]
+    },
+    { "kind": "choice", "id": "q-io", "review": ["io", "sono"], "prompt": "Complete: Io ___ Marco.", "options": ["sono", "sei", "è"], "answer": 0 },
+    { "kind": "choice", "id": "q-tu", "review": ["tu", "sei"], "prompt": "Complete: Tu ___ italiano?", "options": ["sono", "sei", "è"], "answer": 1 },
+    { "kind": "choice", "id": "q-lei", "review": ["lei", "è"], "prompt": "Complete: Lei ___ di Roma.", "options": ["sono", "sei", "è"], "answer": 2 },
+    { "kind": "choice", "id": "q-lui", "review": ["lui"], "prompt": "Qual destas quer dizer “ele”?", "options": ["lui", "lei", "tu"], "answer": 0 },
+    { "kind": "write", "id": "w-io", "review": ["io", "sono"], "prompt": "Eu sou a Anna.", "answers": ["Io sono Anna", "Sono Anna"] },
+    { "kind": "write", "id": "w-lui", "review": ["lui", "è"], "prompt": "Ele é de Roma.", "answers": ["Lui è di Roma", "È di Roma"] },
+    { "kind": "write", "id": "w-tu", "review": ["tu", "sei", "ciao"], "prompt": "Oi, você é o Marco?", "answers": ["Ciao, tu sei Marco", "Ciao, sei Marco"] }
+  ]
+}

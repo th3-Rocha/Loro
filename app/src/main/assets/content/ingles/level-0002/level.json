@@ -1,0 +1,21 @@
+{
+  "schema": 1,
+  "type": "writing",
+  "title": "Apresentações",
+  "theme": "Dizer o nome e perguntar o do outro",
+  "glossary": {
+    "my name is": "meu nome é",
+    "nice to meet you": "prazer em conhecer você",
+    "what is your name": "qual é o seu nome?"
+  },
+  "exercises": [
+    { "kind": "card", "id": "c-my-name-is", "new": ["my name is"], "term": "my name is", "translation": "meu nome é", "emoji": "🙋", "example": "My name is Luke.", "exampleTranslation": "Meu nome é Luke." },
+    { "kind": "card", "id": "c-nice-to-meet-you", "new": ["nice to meet you"], "term": "nice to meet you", "translation": "prazer em conhecer você", "emoji": "🤝" },
+    { "kind": "card", "id": "c-what-is-your-name", "new": ["what is your name"], "term": "what is your name?", "translation": "qual é o seu nome?", "emoji": "❓" },
+    { "kind": "write", "id": "w-my-name-is", "review": ["my name is", "hello"], "prompt": "Olá, meu nome é Luke.", "answers": ["Hello, my name is Luke", "Hello, my name's Luke"] },
+    { "kind": "write", "id": "w-nice-to-meet-you", "review": ["nice to meet you"], "prompt": "Prazer em conhecer você.", "answers": ["Nice to meet you"] },
+    { "kind": "write", "id": "w-what-is-your-name", "review": ["what is your name"], "prompt": "Qual é o seu nome?", "answers": ["What is your name", "What's your name"] },
+    { "kind": "write", "id": "w-am", "review": ["good morning", "am"], "prompt": "Bom dia, eu sou a Julia.", "answers": ["Good morning, I am Julia", "Good morning, I'm Julia"] },
+    { "kind": "write", "id": "w-thank-you", "review": ["thank you"], "prompt": "Obrigado!", "answers": ["Thank you", "Thanks"] }
+  ]
+}
